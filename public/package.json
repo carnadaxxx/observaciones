@@ -1,0 +1,14 @@
+{
+  "name": "observaciones",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/carnadaxxx/observaciones.git",
+  "author": "carnadaxxx <w.coronadobarrantes@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "1.9.1",
+    "popper.js": "1.12.9"
+  }
+}

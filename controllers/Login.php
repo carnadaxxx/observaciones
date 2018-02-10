@@ -4,15 +4,13 @@ class Login extends Controller{
 
    function __construct() {
 
-      // parent::__construct();
-
-       echo "este es el contructor <br/>";
+       parent::__construct();
 
    }
 
    public function index() {
 
-       echo "eleonor";
+       $loginView = new View("login.php");
 
    }
 

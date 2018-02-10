@@ -25,7 +25,7 @@ class Controller {
 
             } else {
 
-                die("error 404.1 sitio no encontrado");
+                die("error 404.1 indice no definido");
 
             }
 

@@ -2,6 +2,9 @@
 
     require("core/Config.php");
     require("core/Controller.php");
+    require("core/View.php");
+    require("core/Model.php");
+    require("core/LoadModel.php");
 
     /*
     *Aqui es donde se va a recoger el nombre del controlador y se va a redirigir

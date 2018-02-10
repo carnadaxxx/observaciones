@@ -17,10 +17,8 @@ class Docente extends Controller {
 
         $Docente = $DocenteModel->getDocente();
 
-        $DocenteView = new View("docente/dashboard.php", compact("Docente"));
-
+        $DocenteView = new Layout("docente/dashboard.php", compact("Docente"));
 
     }
-
 
 }

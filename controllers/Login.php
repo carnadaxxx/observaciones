@@ -10,7 +10,7 @@ class Login extends Controller{
 
    public function index() {
 
-       $loginView = new View("login.php");
+       $loginView = new Layout("login.php", "", "index.js");
 
    }
 

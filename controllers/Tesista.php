@@ -14,9 +14,9 @@ class Tesista extends Controller {
 
         $TesistaModel = new TesistaModel();
 
-        $Tesistas = $TesistaModel->getTesista();
+        $Tesista = $TesistaModel->getTesista();
 
-        $TesistaView = new View("tesista/dashboard.php", compact("Tesistas"));
+        $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
 
 
 

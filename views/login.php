@@ -7,7 +7,7 @@
                  </div>
                  <div class="card-body">
 
-                     <form action="controllers/login.php" method="POST">
+                     <form action="index.php?controller=Autentification" method="POST">
 
                          <div class="form-group">
                              <label for="userName">Usuario:</label>
@@ -23,12 +23,12 @@
                              <label for="userTipo">Tipo de Usuario:</label>
                              <select class="form-control" id="userTipo" name="userType">
                               <option value="0">-- Seleccione --</option>
-                              <option value="1">Alumno</option>
+                              <option value="1">Tesista</option>
                               <option value="2">Docente</option>
                             </select>
                          </div>
 
-                         <button type="submit" name="submit" class="btn btn-primary" disabled>Submit</button>
+                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                      </form>
 
                  </div>

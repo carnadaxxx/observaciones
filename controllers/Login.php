@@ -1,6 +1,6 @@
 <?php
 
-class Login extends Controller{
+class Login extends Controller {
 
    function __construct() {
 
@@ -10,8 +10,9 @@ class Login extends Controller{
 
    public function index() {
 
-       $loginView = new Layout("login.php", "", "index.js");
+       $indexView = new Layout("login.php", "", "index.js");
 
    }
+
 
 }

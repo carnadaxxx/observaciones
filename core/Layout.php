@@ -1,6 +1,13 @@
 <?php
 /*
-*Esta clase incluye el header y el footer recive la vista y al a data
+*Esta clase  genera el la vista, todavia existe la clase views pero esa es
+*para cosas que no requieran un header o $footer
+*
+*Esta clase recive 3 parametros
+*$view el nombre de la vista
+*$data los datos recividos
+*$js si la vista va incluir un archivo js
+*
 */
 
 class Layout {

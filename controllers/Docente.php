@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Docente extends Controller {
 
@@ -8,16 +9,25 @@ class Docente extends Controller {
 
     }
 
-
     public function index() {
 
-        $Loader = new LoadModel("DocenteModel");
+        $sessionIdD = $_SESSION['sessionIdDocente'];
 
-        $DocenteModel = new DocenteModel();
+        if ($_SESSION['sessionType'] == "Docente") {
 
-        $Docente = $DocenteModel->getDocente();
+            $Loader = new LoadModel("DocenteModel");
 
-        $DocenteView = new Layout("docente/dashboard.php", compact("Docente"));
+            $DocenteModel = new DocenteModel();
+
+            $Docente = $DocenteModel->getDocente($sessionIdD);
+
+            $DocenteView = new Layout("docente/dashboard.php", compact("Docente"));
+
+        } else {
+
+            $DocenteView = new Layout("errors/noAutho.php");
+
+        }
 
     }
 

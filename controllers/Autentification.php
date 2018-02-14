@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+/*
+*Esta es el controlador que maneja el proceso de Autentificacion
+*TODO: Es necesario encriptar las contraseñas para los docentes y tesistas
+*/
 
 class Autentification extends Controller {
 
@@ -18,6 +24,12 @@ class Autentification extends Controller {
 
            $userType = filter_var($_POST['userType'] ,FILTER_SANITIZE_NUMBER_INT);
 
+           /*
+           *Esta parte se encarga de filtrar del lado del servidor si los
+           *parametros enviados por el formulario no estan vacios
+           *Solo compara si el $userName y $userPass estan vacios ya que el
+           *parametro $userType envia solo 3 valores 0,1,2
+           */
 
            if(empty($userName)|| empty($userPass)) {
 
@@ -27,6 +39,12 @@ class Autentification extends Controller {
 
            } else {
 
+               /*
+               *Esta parte recive el parametro $userType y lo usa como
+               *condicional para retornar un error en caso de que se envie
+               *la informacion del formulario con el $userType == 0
+               */
+
                if ($userType == 0) {
 
                    header("Location: ../index.php?login=error2");
@@ -35,25 +53,39 @@ class Autentification extends Controller {
 
                } else {
 
+                   /*
+                   *Esta parte es la que genera las Sessiones segun el tipo de
+                   *usuario.
+                   *TODO: Esto tambien puede ser encapsulado la creacion de la
+                   *session
+                   */
+
                    if ($userType == 1) {
 
                        $ModelT = new LoadModel("TesistaModel");
                        $TesistaModel = new TesistaModel();
-                       $Tesista = $TesistaModel->checkTesistaOnDB($userName, $userPass);
+                       $TesistaArray = $TesistaModel->checkTesistaOnDB($userName, $userPass);
 
-                       if ($Tesista == 1) {
+                       /*Si el array regresa vacio */
+                       if (empty($TesistaArray)) {
 
-                           header("Location: ../index.php?controller=Tesista");
+                           header("Location: ../index.php?login=error4");
 
                            exit();
 
                        } else {
 
-                           header("Location: ../index.php?login=error4");
+                           $tesistaId = $TesistaArray[0]['idtesista'];
+
+                           $_SESSION['loggedin'] = true;
+                           $_SESSION['sessionType'] = Tesista;
+                           $_SESSION['sessionIdTesista'] = $tesistaId;
+
+                           header("Location: ../index.php?controller=Tesista");
 
                            exit();
-                       }
 
+                       }
 
                    }
 
@@ -61,23 +93,28 @@ class Autentification extends Controller {
 
                        $ModelD = new LoadModel("DocenteModel");
                        $DocenteModel = new DocenteModel();
-                       $Docente = $DocenteModel->checkDocenteOnDB($userName, $userPass);
+                       $DocenteArray = $DocenteModel->checkDocenteOnDB($userName, $userPass);
 
-                   }
+                       if (empty($DocenteArray)) {
 
-                   if ($Docente == 1) {
+                           header("Location: ../index.php?login=error5");
 
-                       header("Location: ../index.php?controller=Docente");
+                           exit();
 
-                       exit();
+                       } else {
 
+                           $idDocente = $DocenteArray[0]['iddocente'];
 
+                           $_SESSION['loggedin'] = true;
+                           $_SESSION['sessionType'] = Docente;
+                           $_SESSION['sessionIdDocente'] =  $idDocente;
 
-                   } else {
+                           header("Location: ../index.php?controller=Docente");
 
-                       header("Location: ../index.php?login=error5");
+                           exit();
 
-                       exit();
+                       }
+
                    }
 
                }

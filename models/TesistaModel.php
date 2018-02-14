@@ -2,7 +2,12 @@
 
 class TesistaModel extends Model {
 
-    public function getTesista() {
+    /*
+    *Esta funcion genera un Array con todos los Usuarios registrados en la
+    *tabla tesista
+    */
+
+    public function getTesistas() {
 
         $query = "SELECT * FROM tesista;";
 
@@ -11,6 +16,28 @@ class TesistaModel extends Model {
         return $result->fetchAll();
 
     }
+
+    /*
+    *Esta funcion recive la id del tesista recivida desde la $_SESSION y retorna
+    *todos los datos relacionados con el ususario logueado
+    */
+
+    public function getTesista(int $idtesista) {
+
+        $GTquery = "SELECT * FROM tesista WHERE idtesista = '".$idtesista."'";
+
+        $gt = $this->db->query($GTquery);
+
+        return $gt->fetchAll();
+
+    }
+
+    /*
+    *Esta funcion recive 2 parametros El Nombre de usuario y la contraseña
+    *los compara en la base de datos y retorna un Array de donde va a salir
+    *la informacion para armar la SESSION y las COOKIS para los Tesistas
+    *TODO: Tratar de encapsular esta funcion en una sola
+    */
 
     public function checkTesistaOnDB(String $usernameT, String $passwordT) {
 
@@ -23,11 +50,10 @@ class TesistaModel extends Model {
 
         $ctdb = $this->db->query($tesistaCHK);
 
-        $rows = $ctdb->rowCount();
+        $rows = $ctdb->fetchAll();
 
         return $rows;
 
     }
-
 
 }

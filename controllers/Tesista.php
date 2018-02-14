@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Tesista extends Controller {
 
@@ -10,15 +11,23 @@ class Tesista extends Controller {
 
     public function index() {
 
-        $Loader = new LoadModel("TesistaModel");
+        $sessionIdT = $_SESSION['sessionIdTesista'];
 
-        $TesistaModel = new TesistaModel();
+        if ($_SESSION['sessionType'] == "Tesista") {
 
-        $Tesista = $TesistaModel->getTesista();
+            $Loader = new LoadModel("TesistaModel");
 
-        $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
+            $TesistaModel = new TesistaModel();
 
+            $Tesista = $TesistaModel->getTesista($sessionIdT);
 
+            $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
+
+        } else {
+
+            $TesistaView = new Layout("errors/noAutho.php");
+
+        }
 
     }
 

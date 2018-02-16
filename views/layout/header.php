@@ -21,6 +21,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <a class="navbar-brand" href="#"><?php echo getProjectName();?></a>
+      <a class="navbar-brand" href="<?php echo url_base();?>index.php?controller=Logout">Logout</a>
     </nav>
 
     <main role="main" class="container">

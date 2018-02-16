@@ -1,19 +1,31 @@
 <?php
+session_start();
+
 class Controller {
 
     function __construct() {
 
         if($_GET && isset($_GET["action"])) {
 
-            $action = $_GET["action"];
+            if(isset($_SESSION['loggedin'])) {
 
-            if (method_exists($this, $action)) {
+                $action = $_GET["action"];
 
-                $this->$action();
+                if (method_exists($this, $action)) {
+
+                    $this->$action();
+
+                } else {
+
+                    die("error 404.2 sitio no encontrado");
+
+                }
 
             } else {
 
-                die("error 404.2 sitio no encontrado");
+                header("Location: ../index.php");
+
+                exit();
 
             }
 

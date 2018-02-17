@@ -43,14 +43,11 @@ class Layout {
 
             }
 
-
-
         } else {
 
             die("Vista no encontrada");
 
         }
-
 
     }
 

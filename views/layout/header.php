@@ -13,15 +13,16 @@
     <!-- Bootstrap core CSS -->
     <link href="<?php echo url_base();?>public/css/app.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/docs/4.0/examples/navbar-static/navbar-top.css" rel="stylesheet">
   </head>
 
   <body>
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#"><?php echo getProjectName();?></a>
-      <a class="navbar-brand" href="<?php echo url_base();?>index.php?controller=Logout">Logout</a>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="<?php echo url_base();?>"><?php echo getProjectName(); ?> | <?php echo $_SESSION['sessionType']; ?></a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+           <a class="nav-link" href="<?php echo url_base();?>index.php?controller=Logout"><i class="fa fa-power-off"></i> Salir</a>
+        </li>
+      </ul>
     </nav>
 
     <main role="main" class="container">

@@ -19,15 +19,17 @@ function getProjectName() {
 
 }
 
-function array_get_by_index($index, $array) {
+function getSaludo() {
 
-    $i=0;
-    foreach ($array as $value) {
-        if($i==$index) {
-            return [$i][$value];
-        }
-        $i++;
-    }
-    // may be $index exceedes size of $array. In this case NULL is returned.
-    return NULL;
+    //TODO: determinar si la funcionalidad del saludo va en el lado del servidor o del lado del cliente
+
+    $saludo = "Buenos Dias";
+
+    return $saludo;
+
+}
+
+function getFechaFinalDeEntrega() {
+
+
 }

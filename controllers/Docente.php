@@ -11,23 +11,37 @@ class Docente extends Controller {
 
     public function index() {
 
-        $sessionIdD = $_SESSION['sessionIdDocente'];
+        if (isset($_SESSION['loggedin'])) {
 
-        if ($_SESSION['sessionType'] == "Docente") {
+            $sessionIdD = $_SESSION['sessionIdDocente'];
 
-            $Loader = new LoadModel("DocenteModel");
+            if ($_SESSION['sessionType'] == "Docente") {
 
-            $DocenteModel = new DocenteModel();
+                $Loader = new LoadModel("DocenteModel");
 
-            $Docente = $DocenteModel->getDocente($sessionIdD);
+                $DocenteModel = new DocenteModel();
 
-            $DocenteView = new Layout("docente/dashboard.php", compact("Docente"));
+                $Docente = $DocenteModel->getDocente($sessionIdD);
+
+                $DocenteView = new Layout("docente/dashboard.php", compact("Docente"));
+
+            } else {
+
+                $DocenteView = new Layout("errors/noAutho.php");
+
+            }
 
         } else {
 
-            $DocenteView = new Layout("errors/noAutho.php");
+            header("Location: ../index.php");
 
+            exit();
+            
         }
+
+
+
+
 
     }
 

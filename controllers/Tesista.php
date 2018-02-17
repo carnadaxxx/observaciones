@@ -11,21 +11,31 @@ class Tesista extends Controller {
 
     public function index() {
 
-        $sessionIdT = $_SESSION['sessionIdTesista'];
+        if (isset($_SESSION['loggedin'])) {
 
-        if ($_SESSION['sessionType'] == "Tesista") {
+            $sessionIdT = $_SESSION['sessionIdTesista'];
 
-            $Loader = new LoadModel("TesistaModel");
+            if ($_SESSION['sessionType'] == "Tesista") {
 
-            $TesistaModel = new TesistaModel();
+                $Loader = new LoadModel("TesistaModel");
 
-            $Tesista = $TesistaModel->getTesista($sessionIdT);
+                $TesistaModel = new TesistaModel();
 
-            $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
+                $Tesista = $TesistaModel->getTesista($sessionIdT);
+
+                $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
+
+            } else {
+
+                $TesistaView = new Layout("errors/noAutho.php");
+
+            }
 
         } else {
 
-            $TesistaView = new Layout("errors/noAutho.php");
+            header("Location: ../index.php");
+
+            exit();
 
         }
 

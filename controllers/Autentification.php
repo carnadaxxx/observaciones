@@ -76,10 +76,14 @@ class Autentification extends Controller {
                        } else {
 
                            $tesistaId = $TesistaArray[0]['idtesista'];
+                           $tesistaName = $TesistaArray[0]['tesnombre'];
+                           $tesistaLastName = $TesistaArray[0]['tesapellido'];
 
                            $_SESSION['loggedin'] = true;
                            $_SESSION['sessionType'] = Tesista;
                            $_SESSION['sessionIdTesista'] = $tesistaId;
+                           $_SESSION['sessionNameTesista'] = $tesistaName;
+                           $_SESSION['sessionLastNameTesista'] = $tesistaLastName;
 
                            header("Location: ../index.php?controller=Tesista");
 

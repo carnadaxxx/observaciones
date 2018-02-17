@@ -10,9 +10,34 @@ class Login extends Controller {
 
    public function index() {
 
-       $indexView = new Layout("login.php", "", "index.js");
+       if (!isset($_SESSION['loggedin'])) {
+
+           $indexView = new Layout("login.php", "", "index.js");
+
+       } else {
+
+           switch ($_SESSION['sessionType']) {
+
+               case Tesista:
+
+                   header("Location: ../index.php?controller=Tesista");
+
+                   exit();
+
+                   break;
+
+               case Docente:
+
+                   header("Location: ../index.php?controller=Docente");
+
+                   exit();
+
+                   break;
+
+           }
+
+       }
 
    }
-
 
 }

@@ -12,7 +12,7 @@ class Login extends Controller {
 
        if (!isset($_SESSION['loggedin'])) {
 
-           $indexView = new Layout("login.php", "", "index.js");
+           $indexView = new View("login.php");
 
        } else {
 

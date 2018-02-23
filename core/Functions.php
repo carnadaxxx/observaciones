@@ -19,91 +19,17 @@ function getProjectName() {
 
 }
 
-/*
-*Esta funcion es necesaria para generar las alertas.
-*Se supone que esto tiene que recibir el mensaje y la severidad para generar
-*Pero solo recive el error de la URL y retorna pues una cadena que se inserta
-*en la View
-*/
-
-function getErrorsMessages($mensaje = null) {
-
-    if (!empty($mensaje)) {
-
-        switch ($mensaje) {
-            case error0:
-                return '<div class="alert alert-warning" role="alert">Alguno de los campos esta vacio</div>';
-                break;
-
-            case error2:
-                return '<div class="alert alert-warning" role="alert">Tienes que escoger un tipo de Usuario</div>';
-                break;
-
-            case error4:
-                return '<div class="alert alert-warning" role="alert">Algun dato no es correcto</div>';
-                break;
-
-            default:
-                return '<div class="alert alert-warning" role="alert">Algo salio mal pero no sabria decirte que</div>';
-                break;
-        }
-
-    } else {
-
-        return null;
-
-    }
-
-}
-
-/*
-*Esta funcion se encarga del saludo basicamente coge la fecha del sistema y
-*y la conpara por un intervalo
-*/
-
 function getSaludo() {
 
-    $hour = getHourFormServer();
+    //TODO: determinar si la funcionalidad del saludo va en el lado del servidor o del lado del cliente
 
-    $inicioMorning = 5;
-    $endMorning = 12;
-    $inicioAfternoon = 13;
-    $endAfternoon = 18;
-    $inicioNight = 19;
-    $endNigth = 23;
+    $saludo = "Buenos Dias";
 
-    switch ($hour) {
-        case $hour >= $inicioMorning && $hour <= $endMorning:
-            return "Buenos Días ";
-            break;
-
-        case $hour >= $inicioAfternoon && $hour <= $endAfternoon:
-            return "Buenas Tardes ";
-            break;
-
-        case $hour >= $inicioNight && $hour <= $endNigth:
-            return "Buenas Noches ";
-            break;
-
-        case $hour >= 0 && $hour <= $inicioMorning:
-            return "Buenas Noches ";
-            break;
-
-        default:
-            return "Hola ";
-            break;
-    }
+    return $saludo;
 
 }
 
-/*Esta funcion consigue la hora del servidor*/
+function getFechaFinalDeEntrega() {
 
-function getHourFormServer() {
-    $timezone='America/Lima';
-    $date = new DateTime();
-    $date->setTimezone(new DateTimeZone($timezone));
-    $hour = $date->format('H');
-
-    return (int)$hour;
 
 }

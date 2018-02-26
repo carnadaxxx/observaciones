@@ -21,9 +21,30 @@ class Tesista extends Controller {
 
                 $TesistaModel = new TesistaModel();
 
-                $Tesista = $TesistaModel->getTesista($sessionIdT);
+                $Tesista = $TesistaModel->getTesisInfo($sessionIdT);
 
-                $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
+                /*
+                * Datos para la plantilla
+                * TODO: Tengo que ver la forma de hacer que esta parte sea dinamica
+                */
+                $projectName = getProjectName();
+
+                $saludo = getSaludo();
+
+                $tipoUsuario = $_SESSION['sessionType'];
+
+                $nombre =   $_SESSION['sessionNameTesista']." ".$_SESSION['sessionLastNameTesista'];
+
+                /* Esta es la parte del twig */
+
+                $loader = new Twig_Loader_Filesystem('views/tesista/');
+
+                $twig = new Twig_Environment($loader, []);
+
+                echo $twig->render('dashboard.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'Tesista' ));
+
+
+                // $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
 
             } else {
 

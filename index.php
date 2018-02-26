@@ -7,6 +7,7 @@
     require("core/LoadModel.php");
     require("core/Layout.php");
     require("core/Functions.php");
+    require("vendor/autoload.php");
 
     /*
     *Aqui es donde se va a recoger el nombre del controlador y se va a redirigir

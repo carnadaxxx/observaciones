@@ -71,6 +71,8 @@ class Autentification extends Controller {
 
                            header("Location: ../index.php?login=error4");
 
+                           echo getErrorsMessages('Hola mundo', 'alert-danger');
+
                            exit();
 
                        } else {

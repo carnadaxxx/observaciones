@@ -1,0 +1,81 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h3>{{ saludo }}</h3>
+    <h1>{{ nombre }}</h1>
+
+    {% if Tesista %}
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="card">
+              <div class="card-header">
+                informacion de tesis
+              </div>
+              <div class="card-body">
+                    <ul class="list-group">
+                    {% for item in Tesista %}
+                        <li class="list-group-item">Titulo: {{ item.pytitulo_actual }}</li>
+                        <li class="list-group-item">Resolucion No: {{ item.pyresolucion_nro }}</li>
+                        <li class="list-group-item">Estado:
+                            {% if item.pyestado == 1 %}Activo{% endif %}
+                            {% if item.pyestado == 0 %}InActivo{% endif %}
+                            
+                        </li>
+                        <li class="list-group-item">Fechade emision: {{ item.pyresolucion_fecha }}</li>
+                    {% endfor %}
+                    </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="card">
+              <div class="card-header">
+                Acciones
+              </div>
+              <div class="card-body">
+
+                  <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Primary link</a>
+                  <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a>
+
+              </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    {% else %}
+
+        <div class="row" style="margin-top: 3.5em ">
+
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                  <div class="card-header">
+                    informacion de tesis
+                  </div>
+                  <div class="card-body">
+                        Hola . todavia no tienes un proyecto asigando intentalo mas tarde o ponte en contacto con la Escula =).
+
+                  </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+
+
+
+
+{% endblock %}
+
+{% block scripsts %}
+    <script src="{{ url_base }}public/js/tesista/dashboard.js" ></script>
+{% endblock %}

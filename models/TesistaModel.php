@@ -56,4 +56,26 @@ class TesistaModel extends Model {
 
     }
 
+    /* Esta fucnion recibe el id del tesista y retorna un array que contiene
+    *  El titulo de la tesis, el numero de la resolucion y la fecha
+    *  TODO: traer el co-tesista para mostrar su nombre en la plantilla
+    */
+
+    public function getTesisInfo(int $idtesista) {
+
+        $paramm = $idtesista;
+
+        $infotesis = "SELECT pytitulo_actual, pyresolucion_nro, pyestado ,pyresolucion_fecha
+            FROM tesista_proyecto
+	           INNER JOIN res_proyecto
+		            ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
+            WHERE tesista_proyecto.id_tesista = ".$paramm.";";
+
+        $inft = $this->db->query($infotesis);
+
+        return $inft->fetchAll();
+    }
+
+
+
 }

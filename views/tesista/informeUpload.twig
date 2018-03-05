@@ -10,17 +10,36 @@
     </nav>
 
     <h1>Subir Informe</h1>
+    <div class="card">
+
+      <div class="card-body">
+          <h3>Todavia no has subido tu informe ....</h3>
+          <h4><strong>Paso 1.</strong> Selecciona tu informe en *.pdf.</h4>
 
 
-    <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="fileupload">
 
+              <label class="custom-file-label" for="fileupload">Selecciona un Archivo</label>
+              <!-- <div class="invalid-tooltip">
+                Please choose a unique and valid username.
+              </div> -->
+            </div>
 
-    </form>
+            <!-- <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div> -->
+          </div>
+
+      </div>
+    </div>
 
 
 {% endblock %}
 
 {% block scripsts %}
+    <script src="{{ url_base }}public/node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js" ></script>
     <script src="{{ url_base }}public/node_modules/blueimp-file-upload/js/jquery.fileupload.js" ></script>
     <script src="{{ url_base }}public/js/tesista/informeUpload.js" ></script>
 {% endblock %}

@@ -1,6 +1,7 @@
 $(function () {
 
     var files = $('#files');
+    $( '.custom-file-label' ).append('Selecciona un Archivo *.pdf' );
 
     $('#fileupload').fileupload({
 
@@ -28,6 +29,14 @@ $(function () {
             $('#fileupload').addClass('is-valid');
             $('#fileupload').removeClass('is-invalid');
 
+            if ($('.custom-file-label').text().length > 0) {
+
+                $('.custom-file-label').empty().append(fileName);
+
+            }
+
+            data.submit();
+
             console.log("esto es un pdf");
 
         }
@@ -38,6 +47,11 @@ $(function () {
 
     }).on('fileuploadprogressall', function(e, data) {
 
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+
+        $('.progress-bar').width(progress + "%").attr('aria-valuenow', progress);
+
+        console.log(data);
 
     });
 });

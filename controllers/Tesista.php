@@ -43,9 +43,6 @@ class Tesista extends Controller {
 
                 echo $twig->render('dashboard.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'Tesista' ));
 
-
-                // $TesistaView = new Layout("tesista/dashboard.php", compact("Tesista"));
-
             } else {
 
                 $TesistaView = new Layout("errors/noAutho.php");

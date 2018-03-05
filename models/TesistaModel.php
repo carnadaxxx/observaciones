@@ -56,9 +56,9 @@ class TesistaModel extends Model {
 
     }
 
-    /* Esta fucnion recibe el id del tesista y retorna un array que contiene
+    /* Esta funcion recibe el id del tesista y retorna un array que contiene
     *  El titulo de la tesis, el numero de la resolucion y la fecha
-    *  TODO: traer el co-tesista para mostrar su nombre en la plantilla
+    *  TODO: traer el co-tesista en la misma consulta para mostrar su nombre en la plantilla
     */
 
     public function getTesisInfo(int $idtesista) {
@@ -77,5 +77,19 @@ class TesistaModel extends Model {
     }
 
 
+    /*
+    * Esta funcion es para sacar el coautor de una tesis
+    * TODO: esto lo quiero poner en la funcion getTesisInfo
+    */
+
+    public function getCoTesista(int $idtesista) {
+
+        $paramm = $idtesista;
+
+        $cotesista = "";
+
+        // con el idtesista quiero sacar a todos a los autores;
+
+    }
 
 }

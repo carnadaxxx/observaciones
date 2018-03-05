@@ -18,9 +18,8 @@
                         <li class="list-group-item">Titulo: {{ item.pytitulo_actual }}</li>
                         <li class="list-group-item">Resolucion No: {{ item.pyresolucion_nro }}</li>
                         <li class="list-group-item">Estado:
-                            {% if item.pyestado == 1 %}Activo{% endif %}
-                            {% if item.pyestado == 0 %}InActivo{% endif %}
-                            
+                            {% if item.pyestado == 1 %}<span class="text-success">Activo</span>{% endif %}
+                            {% if item.pyestado == 0 %}<span class="text-danger">InActivo</span>{% endif %}
                         </li>
                         <li class="list-group-item">Fechade emision: {{ item.pyresolucion_fecha }}</li>
                     {% endfor %}
@@ -36,8 +35,8 @@
               </div>
               <div class="card-body">
 
-                  <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Primary link</a>
-                  <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a>
+                  <a href="{{ url_base }}index.php?controller=InformeUpload" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Subir Informe</a>
+                  <a href="{{ url_base }}index.php?controller=RisingObservations" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Levantamiento de Observaciones</a>
 
               </div>
             </div>
@@ -49,7 +48,6 @@
     {% else %}
 
         <div class="row" style="margin-top: 3.5em ">
-
             <div class="col-lg-8 mx-auto">
                 <div class="card">
                   <div class="card-header">
@@ -57,25 +55,15 @@
                   </div>
                   <div class="card-body">
                         Hola . todavia no tienes un proyecto asigando intentalo mas tarde o ponte en contacto con la Escula =).
-
                   </div>
                 </div>
-
             </div>
-
-
         </div>
 
-
     {% endif %}
-
-
-
-
-
 
 {% endblock %}
 
 {% block scripsts %}
-    <script src="{{ url_base }}public/js/tesista/dashboard.js" ></script>
+
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Subir Informe</li>
+        </ol>
+    </nav>
+
+    <h1>Subir Informe</h1>
+
+
+    <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+
+
+    </form>
+
+
+{% endblock %}
+
+{% block scripsts %}
+    <script src="{{ url_base }}public/node_modules/blueimp-file-upload/js/jquery.fileupload.js" ></script>
+    <script src="{{ url_base }}public/js/tesista/informeUpload.js" ></script>
+{% endblock %}

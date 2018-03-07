@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 class RisingObservations extends Controller {
 
     function __construct() {

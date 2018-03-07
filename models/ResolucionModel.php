@@ -9,7 +9,11 @@ class ResolucionModel extends Model {
 
     public function getInitialInforme(int $idtesista) {
 
-        $giinfo = "";
+        $giinfo = "SELECT pyproyecto_archivo
+            FROM tesista_proyecto
+	           INNER JOIN res_proyecto
+		             ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
+             WHERE tesista_proyecto.id_tesista = ".$idtesista.";";
 
         $result = $this->db->query($giinfo);
 

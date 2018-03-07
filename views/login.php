@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,8 +23,6 @@
         <div class="container">
              <div class="row">
                  <div class="col-lg-6 mx-auto">
-
-                     <?php echo getErrorsMessages($_GET['login']); ?>
 
                      <h1>Bienvenidos a <?php echo getProjectName();?></h1>
                      <div class="card">

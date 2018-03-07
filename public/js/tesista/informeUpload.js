@@ -17,8 +17,6 @@ $(function () {
 
         var fileType = data.originalFiles[0]['type'];
 
-        console.log(fileType + "  " + fileName);
-
         if (!fileTypeAllowed.test(fileName)) {
 
             $('#fileupload').addClass('is-invalid').after('<div class="invalid-tooltip">El archivo que as adjuntado no es *.pdf.</div>');
@@ -37,7 +35,7 @@ $(function () {
 
             data.submit();
 
-            console.log("esto es un pdf");
+            //console.log("esto es un pdf");
 
         }
 
@@ -51,7 +49,7 @@ $(function () {
 
         $('.progress-bar').width(progress + "%").attr('aria-valuenow', progress);
 
-        console.log(data);
+        //console.log(data);
 
     });
 });

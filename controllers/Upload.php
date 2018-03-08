@@ -1,7 +1,9 @@
 <?php
     /*
     * Esta clase es la que maneja toda la logica desde el servidor
-    * la subida de archivos
+    * para la subida de archivos.
+    *
+    * Esta es para la subida del informe inicial
     */
 
 class Upload extends Controller {
@@ -16,17 +18,42 @@ class Upload extends Controller {
 
         if (isset($_FILES['fileupload'])) {
 
-            $arreglo = $_FILES['fileupload']['name'];
+            $msg = "";
 
-            $arregloT = $_FILES['fileupload']['type'];
+            $idUsuario = $_SESSION['sessionIdTesista'];
 
-            print_r($_FILES['fileupload']);
+            $ModelRes = new LoadModel("ResolucionModel");
 
-            print_r($arreglo."  ".$arregloT);
+            $ResModel = new ResolucionModel();
+
+            $foldername = $ResModel->getNumberOfResolution($idUsuario);
+
+            $targetFile = "uploaded/".$foldername[0]['pyresolucion_nro']."/".basename($_FILES['fileupload']['name'][0]);
+
+            if (file_exists($targetFile)) {
+
+                $msg = array("status" => 0, "msg" => "El proyecto ya existe");
+
+                exit(json_encode($msg));
+
+            } else {
+
+                mkdir('./uploaded/'.$foldername[0]['pyresolucion_nro'].'/', 0777);
+
+                move_uploaded_file($_FILES['fileupload']['tmp_name'][0], $targetFile);
+
+                $msg = array("status" => 1, "msg" => "El proyecto se a subido con exito", "path" => $targetFile);
+
+                exit(json_encode($msg));
+
+            }
+
 
         } else {
 
-            print_r("algo salio mal");
+            $msg = array("status" => 0, "msg" => "Algo salio terriblemente mal.");
+
+            exit(json_encode($msg));
 
         }
 

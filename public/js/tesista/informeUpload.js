@@ -5,11 +5,15 @@ $(function () {
 
     $('#fileupload').fileupload({
 
+        //Datos de la configuracion del Plugin
+
         url: 'index.php?controller=Upload',
         dataType: 'json',
         autoUpload: false
 
     }).on('fileuploadadd', function (e, data) {
+
+        //Esta es la parte que maneja lo que pasa cuando sube el archivo
 
         var fileTypeAllowed = /.\.(pdf)$/i;
 
@@ -20,7 +24,6 @@ $(function () {
         if (!fileTypeAllowed.test(fileName)) {
 
             $('#fileupload').addClass('is-invalid').after('<div class="invalid-tooltip">El archivo que as adjuntado no es *.pdf.</div>');
-            console.log("esto NOOOOOO es un pdf");
 
         } else {
 
@@ -35,21 +38,51 @@ $(function () {
 
             data.submit();
 
-            //console.log("esto es un pdf");
-
         }
 
     }).on('fileuploaddone', function (e, data) {
 
+        //Aqui se maneja todo lo que pasa despues de que la subida termino
 
+        var status = data.jqXHR.responseJSON.status;
+
+        var msg = data.jqXHR.responseJSON.msg;
+
+        switch (status) {
+
+            case 0:
+
+                $('#testing').fadeIn().append('<div class="alert alert-danger" role="alert">' + msg + '</div>');
+
+                $('#fileupload').addClass('is-invalid');
+
+                break;
+
+            case 1:
+
+                var path = data.jqXHR.responseJSON.path;
+
+                var fileName = data.jqXHR.responseJSON.fileName;
+
+                $('.card').fadeOut();
+
+                $('#testing').fadeIn().append('<div class="alert alert-success" role="alert">' + msg + ' ' + fileName + '</div>');
+
+                break;
+
+            default:
+
+                $('#testing').fadeIn().append('<div class="alert alert-danger" role="alert">Algo esta demasiado extraño</div>');
+
+        }
 
     }).on('fileuploadprogressall', function(e, data) {
+
+        //Esta es la parte que maneja la barra de progreso
 
         var progress = parseInt(data.loaded / data.total * 100, 10);
 
         $('.progress-bar').width(progress + "%").attr('aria-valuenow', progress);
-
-        //console.log(data);
 
     });
 });

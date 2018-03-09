@@ -5,7 +5,6 @@
     *
     * Esta es para la subida del informe inicial
     */
-
 class Upload extends Controller {
 
     function __construct() {
@@ -22,7 +21,7 @@ class Upload extends Controller {
 
             $idUsuario = $_SESSION['sessionIdTesista'];
 
-            $ModelRes = new LoadModel("ResolucionModel");
+            $Loader = new LoadModel("ResolucionModel");
 
             $ResModel = new ResolucionModel();
 
@@ -42,12 +41,22 @@ class Upload extends Controller {
 
                 move_uploaded_file($_FILES['fileupload']['tmp_name'][0], $targetFile);
 
+                try {
+
+                    $ResModel->putResolucionFile($idUsuario, $targetFile);
+
+                } catch (PDOException $e) {
+
+                    $msg = array("status" => 0, "msg" => "error en la consulta: ".$e->getMessage(), "path" => $targetFile);
+
+                    exit(json_encode($msg));
+
+                }
+
                 $msg = array("status" => 1, "msg" => "El proyecto se a subido con exito", "path" => $targetFile);
 
                 exit(json_encode($msg));
-
             }
-
 
         } else {
 

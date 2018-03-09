@@ -5,6 +5,9 @@ class ResolucionModel extends Model {
     /*
     * Esta funcione deberia retornar si existe un informe inicial para poder
     * bloquear si ya subio un archibo inicial.
+    *
+    * Esto debe retornar un arreglo basio o uno lleno si es basio entonces
+    * se puede hacer algo =).
     */
 
     public function getInitialInforme(int $idtesista) {
@@ -37,6 +40,21 @@ class ResolucionModel extends Model {
         $result = $this->db->query($query);
 
         return $result->fetchAll();
+
+    }
+
+    /* Esta funcion recive la direccion donde de almaceno el archivo en una
+    *  cadena y lo almacena en la base de datos. Tambien recive el id para
+    *  almacenarlo
+    */
+
+    public function putResolucionFile(int $idtesista, string $fileDir) {
+
+        $prf = $this->db->prepare("UPDATE res_proyecto r JOIN tesista_proyecto t ON r.idproyecto = t.id_proyecto SET
+            r.pyproyecto_archivo = '".$fileDir."'
+            WHERE t.id_tesista = ".$idtesista.";");
+
+        return $prf->execute();
 
     }
 

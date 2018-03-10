@@ -14,6 +14,8 @@
         </ol>
     </nav>
 
+    {% if proyectoDir == 1 %}
+
     <h1>Subir Informe</h1>
     <div class="card mb-3">
 
@@ -29,6 +31,12 @@
             </div>
         </div>
     </div>
+
+    {% else %}
+
+        <h1>Ya tienes un Proyecto</h1>
+
+    {% endif %}
 
     <div id="testing">
 

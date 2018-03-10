@@ -16,13 +16,21 @@
 
             $tipoUsuario = $_SESSION['sessionType'];
 
+            $idUsuario = $_SESSION['sessionIdTesista'];
+
             $nombre =   $_SESSION['sessionNameTesista']." ".$_SESSION['sessionLastNameTesista'];
+
+            $Loader = new LoadModel("ResolucionModel");
+
+            $ResModel = new ResolucionModel();
+
+            $proyectoDir = $ResModel->getHasProyecto($idUsuario);
 
             $loader = new Twig_Loader_Filesystem('views/tesista/');
 
             $twig = new Twig_Environment($loader, []);
 
-            echo $twig->render('informeUpload.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario'));
+            echo $twig->render('informeUpload.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'proyectoDir'));
 
 
         }

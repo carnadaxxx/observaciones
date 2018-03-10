@@ -16,15 +16,20 @@ class Tesista extends Controller {
 
             if ($_SESSION['sessionType'] == "Tesista") {
 
-                $Loader = new LoadModel("TesistaModel");
+                $LoaderTes = new LoadModel("TesistaModel");
+
+                $LoaderRes = new LoadModel("ResolucionModel");
 
                 $TesistaModel = new TesistaModel();
 
+                $ResModel = new ResolucionModel();
+
                 $Tesista = $TesistaModel->getTesisInfo($sessionIdT);
+
+                $hasProject = $ResModel->getHasProyecto($sessionIdT);
 
                 /*
                 * Datos para la plantilla
-                * TODO: Tengo que ver la forma de hacer que esta parte sea dinamica
                 */
                 $projectName = getProjectName();
 
@@ -40,7 +45,7 @@ class Tesista extends Controller {
 
                 $twig = new Twig_Environment($loader, []);
 
-                echo $twig->render('dashboard.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'Tesista' ));
+                echo $twig->render('dashboard.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'Tesista', 'hasProject' ));
 
             } else {
 

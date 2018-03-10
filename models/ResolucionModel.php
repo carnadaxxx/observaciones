@@ -6,11 +6,10 @@ class ResolucionModel extends Model {
     * Esta funcione deberia retornar si existe un informe inicial para poder
     * bloquear si ya subio un archibo inicial.
     *
-    * Esto debe retornar un arreglo basio o uno lleno si es basio entonces
-    * se puede hacer algo =).
+    * Esto deberia retornar un true si esta lleno y false si esta basio
     */
 
-    public function getInitialInforme(int $idtesista) {
+    public function getHasProyecto(int $idtesista) {
 
         $giinfo = "SELECT pyproyecto_archivo
             FROM tesista_proyecto
@@ -20,7 +19,19 @@ class ResolucionModel extends Model {
 
         $result = $this->db->query($giinfo);
 
-        return $result->fetchAll();
+        $rslt = $result->fetchAll();
+
+        if (empty($rslt[0]['pyproyecto_archivo'])) {
+
+            //Esta basio
+            return 1;
+
+        } else {
+
+            //NO esta basio
+            return 0;
+
+        }
 
     }
 
@@ -57,6 +68,5 @@ class ResolucionModel extends Model {
         return $prf->execute();
 
     }
-
 
 }

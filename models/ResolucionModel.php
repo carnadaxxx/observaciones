@@ -36,6 +36,26 @@ class ResolucionModel extends Model {
     }
 
     /*
+    * Esta funcion esta para conseguir la direccion exacta donde esta almacenado
+    * el poryecto.
+    *
+    */
+
+    public function getProyectoArchivo(int $idtesista) {
+
+        $gpa = "SELECT pyproyecto_archivo FROM tesista_proyecto
+	        INNER JOIN res_proyecto
+		         ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
+             WHERE tesista_proyecto.id_tesista = ".$idtesista.";";
+
+        $result = $this->db->query($gpa);
+
+        $rslt = $result->fetchAll();
+
+        return $rslt[0]['pyproyecto_archivo'];
+    }
+
+    /*
     * Esta Funcion sirve para conseguir el numero de resolucion, Con esto
     * Creamos la carpeta para almacenar el archivo inicial.
     */
@@ -66,6 +86,27 @@ class ResolucionModel extends Model {
             WHERE t.id_tesista = ".$idtesista.";");
 
         return $prf->execute();
+
+    }
+
+    /*
+    * Esta funcion trar la Id de proyecto en base la ID de tesista.
+    * Esto no retorna un array esto ya retorna un INT
+    */
+
+    public function getProjectIDByUserID(int $idTesista) {
+
+        $query = "SELECT id_proyecto FROM tesista_proyecto
+               INNER JOIN res_proyecto
+             ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
+             WHERE tesista_proyecto.id_tesista = ".$idTesista.";";
+
+
+        $result = $this->db->query($query);
+
+        $rslt = $result->fetchAll();
+
+        return $rslt[0]['id_proyecto'];
 
     }
 

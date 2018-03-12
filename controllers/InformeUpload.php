@@ -26,11 +26,13 @@
 
             $proyectoDir = $ResModel->getHasProyecto($idUsuario);
 
+            $proyectoArc = $ResModel->getProyectoArchivo($idUsuario);
+
             $loader = new Twig_Loader_Filesystem('views/tesista/');
 
             $twig = new Twig_Environment($loader, []);
 
-            echo $twig->render('informeUpload.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'proyectoDir'));
+            echo $twig->render('informeUpload.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'proyectoDir', 'proyectoArc'));
 
 
         }

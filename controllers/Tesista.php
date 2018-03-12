@@ -37,6 +37,8 @@ class Tesista extends Controller {
 
                 $tipoUsuario = $_SESSION['sessionType'];
 
+                $resID = $_SESSION['sessionIdProyecto'];
+
                 $nombre =   $_SESSION['sessionNameTesista']." ".$_SESSION['sessionLastNameTesista'];
 
                 /* Esta es la parte del twig */

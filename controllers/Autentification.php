@@ -81,11 +81,16 @@ class Autentification extends Controller {
                            $tesistaName = $TesistaArray[0]['tesnombre'];
                            $tesistaLastName = $TesistaArray[0]['tesapellido'];
 
+                           $ModelR = new LoadModel("ResolucionModel");
+                           $ResModel = new ResolucionModel();
+                           $ResID = $ResModel->getProjectIDByUserID($tesistaId);
+
                            $_SESSION['loggedin'] = true;
                            $_SESSION['sessionType'] = Tesista;
                            $_SESSION['sessionIdTesista'] = $tesistaId;
                            $_SESSION['sessionNameTesista'] = $tesistaName;
                            $_SESSION['sessionLastNameTesista'] = $tesistaLastName;
+                           $_SESSION['sessionIdProyecto'] = $ResID;
 
                            header("Location: ../index.php?controller=Tesista");
 

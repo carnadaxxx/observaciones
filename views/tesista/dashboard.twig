@@ -23,7 +23,9 @@
                         </li>
                         <li class="list-group-item">Fechade emision: {{ item.pyresolucion_fecha }}</li>
                     {% endfor %}
-                        <li class="list-group-item">Tiene Proyecto: {{ hasProject }}</li>
+                        <li class="list-group-item">Tiene Proyecto: {% if hasProject == 1 %} <span class="text-danger">No has subido tu proyecto</span>{% else %}<span class="text-success">Tiene Proyecto</span>{% endif %}
+
+                        </li>
                     </ul>
               </div>
             </div>
@@ -48,18 +50,12 @@
 
     {% else %}
 
-        <div class="row" style="margin-top: 3.5em ">
-            <div class="col-lg-8 mx-auto">
-                <div class="card">
-                  <div class="card-header">
-                    informacion de tesis
-                  </div>
-                  <div class="card-body">
-                        Hola . todavia no tienes un proyecto asigando intentalo mas tarde o ponte en contacto con la Escula =).
-                  </div>
-                </div>
-            </div>
-        </div>
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">Hola!</h4>
+      <p>todavia no tienes un proyecto asigando intentalo mas tarde o ponte en contacto con la Escula =)..</p>
+      <hr>
+      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    </div>
 
     {% endif %}
 

@@ -107,3 +107,11 @@ function getHourFormServer() {
     return (int)$hour;
 
 }
+
+/* Esta funcion consigue la fecha del servidor */
+
+function getDateFromServer() {
+
+
+
+}

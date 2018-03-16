@@ -27,7 +27,7 @@ class Upload extends Controller {
 
             $foldername = $ResModel->getNumberOfResolution($idUsuario);
 
-            $targetFile = "uploaded/".$foldername[0]['pyresolucion_nro']."/".basename($_FILES['fileupload']['name'][0]);
+            $targetFile = "uploaded/".$foldername."/".basename($_FILES['fileupload']['name'][0]);
 
             if (file_exists($targetFile)) {
 
@@ -37,7 +37,9 @@ class Upload extends Controller {
 
             } else {
 
-                mkdir('./uploaded/'.$foldername[0]['pyresolucion_nro'].'/', 0777);
+                mkdir('./uploaded/'.$foldername.'/', 0777);
+
+                mkdir('./uploaded/'.$foldername.'/lastFile/', 0777);
 
                 move_uploaded_file($_FILES['fileupload']['tmp_name'][0], $targetFile);
 

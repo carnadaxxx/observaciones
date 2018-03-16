@@ -108,10 +108,27 @@ function getHourFormServer() {
 
 }
 
+/*Esta funcion retorna si el directorio esta basio o no*/
+
+function dir_is_empty($dir) {
+  $handle = opendir($dir);
+  while (false !== ($entry = readdir($handle))) {
+    if ($entry != "." && $entry != "..") {
+      return FALSE;
+    }
+  }
+  return TRUE;
+}
+
 /* Esta funcion consigue la fecha del servidor */
 
 function getDateFromServer() {
 
+    $timezone='America/Lima';
+    $date = new DateTime();
+    $date->setTimezone(new DateTimeZone($timezone));
+    $fecha = $date->format('y-m-d');
 
+    return $fecha;
 
 }

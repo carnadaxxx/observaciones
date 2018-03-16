@@ -6,7 +6,7 @@ session_destroy();
 session_write_close();
 header('Location: /');
 
-class Logout extends Controllers {
+class Logout extends Controller {
 
    function __construct() {
 

@@ -40,13 +40,15 @@ class RisingObservations extends Controller {
 
         $arrayObs = $ObsModel->getLisOfObservations($ResIP);
 
+        $lastFile = $ResModel->getInformeArchivo($sessionIdT);
+
         // endOF Generador de variables de la BD
 
         $loader = new Twig_Loader_Filesystem('views/tesista/');
 
         $twig = new Twig_Environment($loader, []);
 
-        echo $twig->render('risingObservations.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'hasProject', 'arrayObs'));
+        echo $twig->render('risingObservations.twig', compact('projectName', 'saludo', 'nombre', 'tipoUsuario', 'hasProject', 'arrayObs', 'lastFile'));
 
 
     }

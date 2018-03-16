@@ -58,7 +58,8 @@ class TesistaModel extends Model {
 
     /* Esta funcion recibe el id del tesista y retorna un array que contiene
     *  El titulo de la tesis, el numero de la resolucion y la fecha
-    *  TODO: traer el co-tesista en la misma consulta para mostrar su nombre en la plantilla
+    *  donde el estado de la tesis es activo.
+    *  Si no es activo retornara un array basio.
     */
 
     public function getTesisInfo(int $idtesista) {
@@ -69,7 +70,7 @@ class TesistaModel extends Model {
             FROM tesista_proyecto
 	           INNER JOIN res_proyecto
 		            ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
-            WHERE tesista_proyecto.id_tesista = ".$paramm.";";
+            WHERE tesista_proyecto.id_tesista = ".$paramm." AND res_proyecto.pyestado = 1;";
 
         $inft = $this->db->query($infotesis);
 
@@ -79,7 +80,6 @@ class TesistaModel extends Model {
 
     /*
     * Esta funcion es para sacar el coautor de una tesis
-    * TODO: esto lo quiero poner en la funcion getTesisInfo
     */
 
     public function getCoTesista(int $idtesista) {

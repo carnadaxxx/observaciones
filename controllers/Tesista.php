@@ -1,5 +1,9 @@
 <?php
 
+/*
+* Esta es la clase que controla en Dashboar del tesista
+*/
+
 class Tesista extends Controller {
 
     function __construct() {

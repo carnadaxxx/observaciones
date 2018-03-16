@@ -21,12 +21,28 @@
 
     <h1>Levantamiento de Observaciones</h1>
 
+    {% if lastFile %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h4 class="card-title">Ultimo archivo:</h4>
+        <a href="{{ lastFile }}" class="btn btn-primary">ver</a>
+      </div>
+    </div>
+    {% endif %}
+
     <div class="card">
       <div class="card-header">
         Lista de Observaciones
       </div>
-      <div class="card-block">
+      <div class="card-body">
 
+        {% if arrayObs is empty %}
+
+        <div class="alert alert-warning" role="alert">
+          <p>Todavia no tienes ninguna Observacion asignada aun. Si pasa mucho tiempo ponte en contacto con tu Jurado</p>
+        </div>
+
+        {% else %}
         <div class="table-responsive">
           <table class="table">
               <thead class="thead-dark">
@@ -49,13 +65,23 @@
                     <td>
                         {% if item.Obsestado == 1 %}<span class="text-success">Lavantado</span>{% endif %}
                         {% if item.Obsestado == 0 %}<span class="text-danger">No levantado</span>{% endif %}
+
+                        <!-- Levantado -->
+                        <!-- Pendiente -->
+                        <!-- No levantado -->
                     </td>
-                    <td><a href="{{ item.idobservacion }}" data-toggle="modal" data-target="#formInModal"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td>
+                        {% if item.Obsestado == 1 %}<span class="text-muted"><i class="fa fa-pencil" aria-hidden="true"></i></span>{% endif %}
+                        {% if item.Obsestado == 0 %}<a href="{{ url_base }}index.php?controller=ResolvObservacion&id={{ item.idobservacion }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}
+                    </td>
                   </tr>
                 {% endfor %}
               </tbody>
           </table>
         </div>
+        {% endif %}
+
+
       </div>
     </div>
 

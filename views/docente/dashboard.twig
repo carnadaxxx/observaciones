@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h3>{{ saludo }}</h3>
+    <h1>{{ nombre }}</h1>
+
+ {% if ProjectListArray %}
+ <div class="card mb-3">
+     <div class="card-header">Lista de Proyectos</div>
+     <div class="card-body">
+         <table class="table">
+           <thead class="thead-dark">
+             <tr>
+               <th scope="col">Titulo</th>
+               <th scope="col">Area</th>
+               <th scope="col">Linea de Investigacion</th>
+               <th scope="col">Prioridad</th>
+               <th scope="col">Autores</th>
+               <th scope="col">Cargo</th>
+               <th scope="col">Detalles</th>
+             </tr>
+           </thead>
+           <tbody>
+                {% for i in ProjectListArray %}
+                <tr>
+                   <td>{{ i.pytitulo_actual }}</td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td><a href="{{ url_base }}index.php?controller=InfoProyect&id={{ i.idproyecto }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                </tr>
+                {% endfor %}
+           </tbody>
+         </table>
+   </div>
+ </div>
+ {% else %}
+     <div class="alert alert-warning" role="alert">
+       <h4 class="alert-heading">No tienes proyectos asignados</h4>
+       <p>Tienes que ponerte en contacto con la escuela.</p>
+       <hr>
+
+     </div>
+ {% endif %}
+
+
+
+{% endblock %}
+
+{% block scripsts %}
+
+{% endblock %}

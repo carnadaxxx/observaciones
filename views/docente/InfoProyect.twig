@@ -1,0 +1,78 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ resproyecto }}</li>
+    </ol>
+</nav>
+<h1>Informacion de tesis</h1>
+<div class="card  mb-3">
+  <div class="card-header">
+    Detalles de la Tesis
+  </div>
+  <div class="card-block">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Titulo: {{ idproyecto }}</li>
+        <li class="list-group-item">Area: </li>
+        <li class="list-group-item">Linea de Investigacion: </li>
+        <li class="list-group-item">Autores: </li>
+        <li class="list-group-item">Cargo: </li>
+      </ul>
+  </div>
+</div>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="{{ url_base }}index.php?controller=NewObservacion" role="button">Nueva Observacion</a>
+    <a class="btn btn btn-secondary" href="#" role="button">Ver el Ultimo Informe</a>
+</div>
+
+<div class="card mb-3">
+  <div class="card-header">
+    Observaciones
+  </div>
+  <div class="card-block">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+            <th scope="col">Revisar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripsts %}
+
+{% endblock %}

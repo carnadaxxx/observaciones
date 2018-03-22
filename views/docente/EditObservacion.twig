@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect">Titulo: "Nombre del Proyecto"</a></li>
+    <li class="breadcrumb-item active" aria-current="page">idObs</li>
+    </ol>
+</nav>
+
+<h1>Editar Observacion</h1>
+
+<div class="card">
+  <div class="card-header">
+    Observacion
+  </div>
+  <div class="card-body">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>With supporting text below as a natural lead-in to additional content.</td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="#" class="btn btn-primary">Levantar</a>
+      <a href="{{ url_base }}index.php?controller=InfoProyect" class="btn btn-secondary">Cancelar</a>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripsts %}
+
+{% endblock %}

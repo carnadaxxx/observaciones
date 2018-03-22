@@ -92,7 +92,22 @@ class ResolucionModel extends Model {
         $numRes = $result->fetchAll();
 
         return  $numRes[0]['pyresolucion_nro'];
-        // return $result->fetchAll();
+
+    }
+
+    /*
+    * Lo mismode arriba pero con el id del proyecto
+    */
+
+    public function getNumberOfResoltionByIdProyect(int $idproyecto) {
+
+        $query = "SELECT pyresolucion_nro FROM res_proyecto WHERE idproyecto=".$idproyecto.";";
+
+        $result = $this->db->query($query);
+
+        $rslt = $result->fetchAll();
+
+        return $rslt[0]['pyresolucion_nro'];
 
     }
 
@@ -150,6 +165,45 @@ class ResolucionModel extends Model {
         	WHERE o.idobservacion = ".$idobservacion.";");
 
         return $query->execute();
+
+    }
+
+    /*
+    * Esta funcion retorna la lista de proyectos asigandos a un docente
+    * Esta funcion recibe la idDocente y retorna un array con la lista de
+    * proyectos asignados a ese docente
+    */
+
+    public function getListOfProyectByDocente(int $iddocente) {
+
+        $query = "SELECT * FROM docente
+        	INNER JOIN res_asesor ON res_asesor.id_docente = docente.iddocente
+        	INNER JOIN res_proyecto ON res_proyecto.idproyecto = res_asesor.id_proyecto
+        WHERE iddocente = ".$iddocente." AND res_proyecto.pyestado = 1;";
+
+        $result = $this->db->query($query);
+
+        $rslt = $result->fetchAll();
+
+        return $rslt;
+
+    }
+
+    /*
+    * Esta funcion es la que trae la informacion de un proyecto en base a la
+    * Idproyecto
+    */
+
+    public function getInfoOfProyectByIdProyecto(int $idproyecto) {
+
+        $query = "SELECT * FROM res_proyecto WHERE idproyecto=".$idproyecto.";";
+
+        $result = $this->db->query($query);
+
+        $rslt = $result->fetchAll();
+
+        return $rslt;
+
 
     }
 

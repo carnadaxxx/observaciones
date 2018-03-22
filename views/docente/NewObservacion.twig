@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect">Titulo: "Nombre del Proyecto"</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nueva Observacion</li>
+    </ol>
+</nav>
+
+<h1>Formulario de ingreso de observaciones</h1>
+
+<div class="card">
+  <div class="card-header">
+    Ingresa tu observacion
+  </div>
+  <div class="card-body">
+    <form>
+
+      <fieldset class="form-group">
+        <label for="exampleTextarea">Observacion:</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <a class="btn btn btn-secondary" href="{{ url_base }}index.php?controller=InfoProyect" role="button">Cancelar</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripsts %}
+
+{% endblock %}

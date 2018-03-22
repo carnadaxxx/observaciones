@@ -1,7 +1,7 @@
 <?php
 
 /*
-* Esta es la clase que controla en Dashboar del tesista
+* Este es el controlador que maneja el Dashboar del tesista
 */
 
 class Tesista extends Controller {
@@ -43,7 +43,7 @@ class Tesista extends Controller {
 
                 $resID = $_SESSION['sessionIdProyecto'];
 
-                $nombre =   $_SESSION['sessionNameTesista']." ".$_SESSION['sessionLastNameTesista'];
+                $nombre = $_SESSION['sessionNameTesista']." ".$_SESSION['sessionLastNameTesista'];
 
                 /* Esta es la parte del twig */
 

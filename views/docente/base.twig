@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>{{ projectName }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_base }}public/css/app.min.css" rel="stylesheet">
+    {% block styls %}{% endblock %}
+  </head>
+
+  <body>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+          <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url_base }}index.php">{{ projectName }} || {{ tipoUsuario }} </a>
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+               <a class="nav-link" href="{{ url_base }}index.php?controller=Logout"><i class="fa fa-power-off"></i> Salir</a>
+            </li>
+          </ul>
+        </nav>
+
+        <main role="main" class="container">
+
+            {% block content %}{% endblock %}
+
+        </main>
+
+        <footer class="footer">
+          <div class="container">
+            <span class="text-muted">Hola, tienes alguna sugerencia o quieres mejorar el software revisa el codigo fuente en
+                <a href="https://github.com/carnadaxxx/observaciones" target="_blank"><i class="fa fa-github" aria-hidden="true"></i>Observaciones</a>.
+            </span>
+          </div>
+        </footer>
+
+        <script src="{{ url_base }}public/node_modules/jquery/dist/jquery.min.js" ></script>
+        <script src="{{ url_base }}public/node_modules/popper.js/dist/popper.min.js"></script>
+        <script src="{{ url_base }}public/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        {% block scripsts %}{% endblock %}
+
+    </body>
+</html>

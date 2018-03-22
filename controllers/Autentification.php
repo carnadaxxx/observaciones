@@ -115,10 +115,14 @@ class Autentification extends Controller {
                        } else {
 
                            $idDocente = $DocenteArray[0]['iddocente'];
+                           $docenteName = $DocenteArray[0]['docnombre'];
+                           $docenteLastName = $DocenteArray[0]['docapellido'];
 
                            $_SESSION['loggedin'] = true;
                            $_SESSION['sessionType'] = Docente;
                            $_SESSION['sessionIdDocente'] =  $idDocente;
+                           $_SESSION['sessionNameDocente'] = $docenteName;
+                           $_SESSION['sessionLastNameDocente'] = $docenteLastName;
 
                            header("Location: ../index.php?controller=Docente");
 

@@ -17,11 +17,19 @@ class InfoProyect extends Controller {
 
         $LoaderRes = new LoadModel("ResolucionModel");
 
+        $LoaderObs = new LoadModel("ObservacionesModel");
+
         $ResModel = new ResolucionModel();
+
+        $ObsModel = new ObservacionesModel();
 
         $infoProyect = $ResModel->getInfoOfProyectByIdProyecto($idproyecto);
 
         $resproyecto = $ResModel->getNumberOfResoltionByIdProyect($idproyecto);
+
+        $informe = $ResModel->getInformeArchivoByIdProyecto($idproyecto);
+
+        $observaciones = $ObsModel->getLisOfObservations($idproyecto);
 
         /*
         * Datos para la plantilla
@@ -40,7 +48,7 @@ class InfoProyect extends Controller {
 
         $twig = new Twig_Environment($loader, []);
 
-        echo $twig->render('InfoProyect.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'idproyecto', 'infoProyect', 'resproyecto'));
+        echo $twig->render('InfoProyect.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'idproyecto', 'infoProyect', 'resproyecto', 'informe', 'observaciones'));
 
 
     }

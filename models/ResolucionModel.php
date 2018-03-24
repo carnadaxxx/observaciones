@@ -74,6 +74,25 @@ class ResolucionModel extends Model {
     }
 
     /*
+    * Esta funcion hace lo mismo que la de arriva pero usa el idproyecto
+    */
+
+    public function getInformeArchivoByIdProyecto(int $idproyecto) {
+
+        $query = "SELECT pyinforme_archivo FROM tesista_proyecto
+            INNER JOIN res_proyecto
+                 ON res_proyecto.idproyecto = tesista_proyecto.id_proyecto
+             WHERE tesista_proyecto.id_proyecto = ".$idproyecto.";";
+
+         $result = $this->db->query($query);
+
+         $rslt = $result->fetchAll();
+
+         return $rslt[0]['pyinforme_archivo'];
+
+    }
+
+    /*
     * Esta Funcion sirve para conseguir el numero de resolucion, Con esto
     * Creamos la carpeta para almacenar el archivo inicial.
     * Recive la Id del Tesista que conseguimos como variable de session;

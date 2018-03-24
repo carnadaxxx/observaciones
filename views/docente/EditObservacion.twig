@@ -17,7 +17,7 @@
     Observacion
   </div>
   <div class="card-body">
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Respuesta</th>
@@ -29,6 +29,16 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Estado</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option value="3">-- Selecciona --</option>
+          <option value="0">No levantado</option>
+          <option value="1">Levantado</option>
+        </select>
+      </div>
+
       <a href="#" class="btn btn-primary">Levantar</a>
       <a href="{{ url_base }}index.php?controller=InfoProyect" class="btn btn-secondary">Cancelar</a>
   </div>

@@ -56,26 +56,36 @@
                   </tr>
               </thead>
               <tbody>
-                {% for item in arrayObs %}
-                  <tr>
-                    <td>{{ item.Obsfecha_obs }}</td>
-                    <td>{{ item.Obsactividad }}</td>
-                    <td>{{ item.Obsobservacion}}</td>
-                    <td>{{ item.Obslevantamiento }}</td>
-                    <td>
-                        {% if item.Obsestado == 1 %}<span class="text-success">Lavantado</span>{% endif %}
-                        {% if item.Obsestado == 0 %}<span class="text-danger">No levantado</span>{% endif %}
 
-                        <!-- Levantado -->
-                        <!-- Pendiente -->
-                        <!-- No levantado -->
-                    </td>
-                    <td>
-                        {% if item.Obsestado == 1 %}<span class="text-muted"><i class="fa fa-pencil" aria-hidden="true"></i></span>{% endif %}
-                        {% if item.Obsestado == 0 %}<a href="{{ url_base }}index.php?controller=ResolvObservacion&id={{ item.idobservacion }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}
-                    </td>
-                  </tr>
-                {% endfor %}
+                {% if arrayObs%}
+                    {% for item in arrayObs %}
+                      <tr>
+                        <td>{{ item.Obsfecha_obs }}</td>
+                        <td>{{ item.Obsactividad }}</td>
+                        <td>{{ item.Obsobservacion}}</td>
+                        <td>{{ item.Obslevantamiento }}</td>
+                        <td>
+                            {% if item.Obsestado == 2 %}<span class="text-warning">Pendiente</span>{% endif %}
+                            {% if item.Obsestado == 1 %}<span class="text-success">Lavantado</span>{% endif %}
+                            {% if item.Obsestado == 0 %}<span class="text-danger">No levantado</span>{% endif %}
+                        </td>
+                        <td>
+                            {% if item.Obsestado == 1 %}<span class="text-muted"><i class="fa fa-pencil" aria-hidden="true"></i></span>{% endif %}
+                            {% if item.Obsestado == 0 %}<a href="{{ url_base }}index.php?controller=ResolvObservacion&id={{ item.idobservacion }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                {% else %}
+                <div class="alert alert-warning" role="alert">
+                  <h4 class="alert-heading">Well done!</h4>
+                  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                  <hr>
+                  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                </div>
+                {% endif %}
+
+
+
               </tbody>
           </table>
         </div>

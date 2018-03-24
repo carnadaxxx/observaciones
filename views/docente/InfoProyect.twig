@@ -14,21 +14,33 @@
     Detalles de la Tesis
   </div>
   <div class="card-block">
+      {% for item in infoProyect  %}
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Titulo: {{ idproyecto }}</li>
+        <li class="list-group-item">Titulo: {{ item.pytitulo_actual }}</li>
+        <li class="list-group-item">Resolucion: {{ item.pyresolucion_nro  }}</li>
         <li class="list-group-item">Area: </li>
         <li class="list-group-item">Linea de Investigacion: </li>
         <li class="list-group-item">Autores: </li>
         <li class="list-group-item">Cargo: </li>
       </ul>
+    {% endfor %}
   </div>
 </div>
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="{{ url_base }}index.php?controller=NewObservacion" role="button">Nueva Observacion</a>
-    <a class="btn btn btn-secondary" href="#" role="button">Ver el Ultimo Informe</a>
+    <a class="btn btn-primary" href="{{ url_base }}index.php?controller=NewObservacion&id={{ idproyecto }}" role="button">Nueva Observacion</a>
+    {% if informe %}
+        <a class="btn btn btn-secondary" href="{{ informe }}" role="button">Ver el Ultimo Informe</a>
+    {% else %}
+        <button type="button" class="btn btn-secondary" disabled>Ver el Ultimo Informe</button>
+    {% endif %}
 </div>
 
+{% if observaciones is empty %}
+    <div class="alert alert-warning" role="alert">
+        No hay observaciones generadas <a href="#" class="alert-link">an example link</a>.
+    </div>
+{% else %}
 <div class="card mb-3">
   <div class="card-header">
     Observaciones
@@ -37,39 +49,42 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            <th scope="col">Revisar</th>
+            <th scope="col">Fecha de Observacion</th>
+            <th scope="col">Actividad</th>
+            <th scope="col">Observacion</th>
+            <th scope="col">Levantamiento</th>
+            <th scope="col">estado</th>
+            <th scope="col">Ver</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td><a href="{{ url_base }}index.php?controller=EditObservacion"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
-          </tr>
+
+            {% for item in observaciones %}
+            <tr>
+              <td>{{ item.Obsfecha_obs }}</td>
+              <td>{{ item.Obsactividad }}</td>
+              <td>{{ item.Obsobservacion}}</td>
+              <td>{{ item.Obslevantamiento }}</td>
+              <td>
+                  {% if item.Obsestado == 2 %}<span class="text-warning">Pendiente</span>{% endif %}
+                  {% if item.Obsestado == 1 %}<span class="text-success">Lavantado</span>{% endif %}
+                  {% if item.Obsestado == 0 %}<span class="text-danger">No levantado</span>{% endif %}
+
+                  <!-- Levantado -->
+                  <!-- Pendiente -->
+                  <!-- No levantado -->
+              </td>
+              <td>
+                <a href="{{ url_base }}index.php?controller=EditObservacion&id={{ item.idobservacion }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+              </td>
+
+            </tr>
+            {% endfor %}
         </tbody>
       </table>
   </div>
 </div>
+{% endif %}
 
 {% endblock %}
 

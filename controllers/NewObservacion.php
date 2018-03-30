@@ -10,6 +10,16 @@ class NewObservacion extends Controller {
 
     public function index() {
 
+        $idObservacion = $_GET['id'];
+
+        $LoaderObs = new LoadModel("ObservacionesModel");
+
+        $ObsModel = new ObservacionesModel();
+
+        $idProyecto = $ObsModel->getIDProyectoByIdObservacion($idObservacion);
+
+        $resolucion = $ObsModel->getNroResolucionByidObservacion($idObservacion);
+
         /*
         * Datos para la plantilla
         */
@@ -27,7 +37,7 @@ class NewObservacion extends Controller {
 
         $twig = new Twig_Environment($loader, []);
 
-        echo $twig->render('NewObservacion.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre'));
+        echo $twig->render('NewObservacion.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'idProyecto', 'resolucion', 'idObservacion'));
 
 
 

@@ -5,8 +5,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect">Titulo: "Nombre del Proyecto"</a></li>
-    <li class="breadcrumb-item active" aria-current="page">idObs</li>
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect&id={{ idProyecto }}">{{ resolucion }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar Observacion</li>
     </ol>
 </nav>
 
@@ -25,22 +25,24 @@
         </thead>
         <tbody>
           <tr>
-            <td>With supporting text below as a natural lead-in to additional content.</td>
+            <td>{{ respuesta }}.</td>
           </tr>
         </tbody>
       </table>
+      <form method="post" action="{{ url_base }}index.php?controller=FormEditObservacion&id={{ idObservacion }}">
 
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Estado</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option value="3">-- Selecciona --</option>
-          <option value="0">No levantado</option>
-          <option value="1">Levantado</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Estado</label>
+            <select name="selectEstado" class="form-control" id="selectEstado">
+              <option value="">-- Selecciona --</option>
+              <option value="0">No levantado</option>
+              <option value="1">Levantado</option>
+            </select>
+          </div>
 
-      <a href="#" class="btn btn-primary">Levantar</a>
-      <a href="{{ url_base }}index.php?controller=InfoProyect" class="btn btn-secondary">Cancelar</a>
+          <button type="submit" name="submit" class="btn btn-primary">Levantar</button>
+          <a href="{{ url_base }}index.php?controller=InfoProyect&id={{ idProyecto }}" class="btn btn-secondary">Cancelar</a>
+      </form>
   </div>
 </div>
 
@@ -48,5 +50,5 @@
 {% endblock %}
 
 {% block scripsts %}
-
+    <script type="text/javascript" src=""></script>
 {% endblock %}

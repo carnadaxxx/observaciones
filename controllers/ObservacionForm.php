@@ -17,8 +17,6 @@
 
         public function index() {
 
-            $msg = "";
-
             if (isset($_POST['submit'])) {
 
                 if ($_FILES['type'] = "application/pdf") {

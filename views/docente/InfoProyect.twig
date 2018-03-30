@@ -27,19 +27,28 @@
   </div>
 </div>
 
-<div class="mb-3">
-    <a class="btn btn-primary" href="{{ url_base }}index.php?controller=NewObservacion&id={{ idproyecto }}" role="button">Nueva Observacion</a>
-    {% if informe %}
-        <a class="btn btn btn-secondary" href="{{ informe }}" role="button">Ver el Ultimo Informe</a>
-    {% else %}
-        <button type="button" class="btn btn-secondary" disabled>Ver el Ultimo Informe</button>
-    {% endif %}
+{% if hasFileOrNot == 1 %}
+<div class="alert alert-warning mb-3" role="alert">
+  falta el archivo inicial
 </div>
+{% endif %}
+
+{% if hasFileOrNot == 0 %}
+    <div class="mb-3">
+        <a class="btn btn-primary" href="{{ url_base }}index.php?controller=NewObservacion&id={{ idproyecto }}" role="button">Nueva Observacion</a>
+        {% if informe %}
+            <a class="btn btn btn-secondary" href="{{ informe }}" role="button">Ver el Ultimo Informe</a>
+        {% else %}
+            <button type="button" class="btn btn-secondary" disabled>Ver el Ultimo Informe</button>
+        {% endif %}
+    </div>
+{% endif %}
 
 {% if observaciones is empty %}
-    <div class="alert alert-warning" role="alert">
-        No hay observaciones generadas <a href="#" class="alert-link">an example link</a>.
+    <div class="alert alert-warning mb-2" role="alert">
+        No hay observaciones generadas.
     </div>
+    <br>
 {% else %}
 <div class="card mb-3">
   <div class="card-header">
@@ -75,7 +84,7 @@
                   <!-- No levantado -->
               </td>
               <td>
-                <a href="{{ url_base }}index.php?controller=EditObservacion&id={{ item.idobservacion }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                <a href="{{ url_base }}index.php?controller=EditObservacion&id={{ item.idobservacion }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
               </td>
 
             </tr>

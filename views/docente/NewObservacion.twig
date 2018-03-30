@@ -5,7 +5,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ url_base }}index.php">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect">Titulo: "Nombre del Proyecto"</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_base }}index.php?controller=InfoProyect&id={{ idProyecto }}">{{ resolucion }}</a></li>
     <li class="breadcrumb-item active" aria-current="page">Nueva Observacion</li>
     </ol>
 </nav>
@@ -17,15 +17,15 @@
     Ingresa tu observacion
   </div>
   <div class="card-body">
-    <form>
+    <form method="post" action="{{ url_base }}index.php?controller=FormNewObservacion&id={{ idObservacion }}">
 
       <fieldset class="form-group">
         <label for="exampleTextarea">Observacion:</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        <textarea class="form-control" id="obstxt" name="obstxt" rows="3"></textarea>
       </fieldset>
 
-      <button type="submit" class="btn btn-primary">Enviar</button>
-      <a class="btn btn btn-secondary" href="{{ url_base }}index.php?controller=InfoProyect" role="button">Cancelar</a>
+      <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
+
     </form>
   </div>
 </div>

@@ -144,8 +144,6 @@ class Autentification extends Controller {
 
        }
 
-       //$AuthView = new View("test.php");
-
    }
 
 

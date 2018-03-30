@@ -8,6 +8,7 @@ class InfoProyect extends Controller {
 
     function __contruct() {
 
+        parent::__construct();
 
     }
 
@@ -31,6 +32,8 @@ class InfoProyect extends Controller {
 
         $observaciones = $ObsModel->getLisOfObservations($idproyecto);
 
+        $hasFileOrNot = $ResModel->hasProyectoByIdProyecto($idproyecto);
+
         /*
         * Datos para la plantilla
         */
@@ -48,7 +51,7 @@ class InfoProyect extends Controller {
 
         $twig = new Twig_Environment($loader, []);
 
-        echo $twig->render('InfoProyect.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'idproyecto', 'infoProyect', 'resproyecto', 'informe', 'observaciones'));
+        echo $twig->render('InfoProyect.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'idproyecto', 'infoProyect', 'resproyecto', 'informe', 'observaciones', 'hasFileOrNot'));
 
 
     }

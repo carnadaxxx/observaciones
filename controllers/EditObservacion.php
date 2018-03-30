@@ -10,6 +10,18 @@ class EditObservacion extends Controller {
 
     public function index() {
 
+        $idObservacion = $_GET['id'];
+
+        $LoaderObs = new LoadModel("ObservacionesModel");
+
+        $ObsModel = new ObservacionesModel();
+
+        $respuesta = $ObsModel->getRespuestaObservacion($idObservacion);
+
+        $idProyecto = $ObsModel->getIDProyectoByIdObservacion($idObservacion);
+
+        $resolucion = $ObsModel->getNroResolucionByidObservacion($idObservacion);
+
         /*
         * Datos para la plantilla
         */
@@ -27,7 +39,7 @@ class EditObservacion extends Controller {
 
         $twig = new Twig_Environment($loader, []);
 
-        echo $twig->render('EditObservacion.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre'));
+        echo $twig->render('EditObservacion.twig', compact('projectName', 'saludo', 'tipoUsuario', 'nombre', 'respuesta', 'idProyecto', 'resolucion', 'idObservacion'));
 
     }
 

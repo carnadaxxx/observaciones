@@ -88,7 +88,40 @@ class ResolucionModel extends Model {
 
          $rslt = $result->fetchAll();
 
-         return $rslt[0]['pyinforme_archivo'];
+         if (empty($rslt[0]['pyinforme_archivo'])) {
+
+             return 0;
+
+         } else {
+
+             return $rslt[0]['pyinforme_archivo'];
+
+         }
+
+    }
+
+    /*
+    * Esta funcion retornara 0 si esta basio y 1 si esuq esta con algo
+    * Esto es para saber si hay un informe inicial almacenado en al base de datos
+    */
+
+    public function hasProyectoByIdProyecto(int $idproyecto) {
+
+        $query = "SELECT pyproyecto_archivo FROM res_proyecto WHERE idproyecto=".$idproyecto.";";
+
+        $result = $this->db->query($query);
+
+        $rslt = $result->fetchAll();
+
+        if (empty($rslt[0]['pyproyecto_archivo'])) {
+
+            return 1;
+
+        } else {
+
+            return 0;
+
+        }
 
     }
 
@@ -180,7 +213,7 @@ class ResolucionModel extends Model {
 
         $query = $this->db->prepare("UPDATE observacion o
         	JOIN res_proyecto r ON r.idproyecto = o.id_proyecto
-        	SET o.Obsfecha_lev = '".getDateFromServer()."', o.Obslevantamiento = '".$levText."' , o.Obsestado = 1, r.pyinforme_archivo = '".$dirInfo."'
+        	SET o.Obsfecha_lev = '".getDateFromServer()."', o.Obslevantamiento = '".$levText."' , o.Obsestado = 2, r.pyinforme_archivo = '".$dirInfo."'
         	WHERE o.idobservacion = ".$idobservacion.";");
 
         return $query->execute();
